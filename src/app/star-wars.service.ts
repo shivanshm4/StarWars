@@ -33,6 +33,12 @@ onSideChosen(charInfo) {
 }
 
 addCharacter(character) {
+  const pos = this.characters.findIndex((char) => {
+    return char.name === character.name;
+  });
+  if (pos !== -1) {
+    return;
+  }
   this.characters.push(character);
 }
 }
