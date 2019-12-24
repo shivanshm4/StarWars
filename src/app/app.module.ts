@@ -18,12 +18,21 @@ const routes = [
   component: CreateCharacterComponent
 },
 {
-  path: '',
-  component: TabsComponent
+  path: 'characters',
+  component: TabsComponent,
+  children: [
+    {
+    path: '', redirectTo: 'all', pathMatch: 'full'
+    },
+    {
+    path: ':side',
+    component: ListComponent
+  }
+  ]
 },
 {
   path: '**',
-  redirectTo: '/'
+  redirectTo: '/characters'
 }
 ];
 @NgModule({
