@@ -17,6 +17,7 @@ export class ItemComponent implements OnInit {
    }
 
   ngOnInit() {
+    
   }
   onAssign(side) {
 

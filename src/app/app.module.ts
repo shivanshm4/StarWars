@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { TabsComponent } from './tabs/tabs.component';
@@ -11,30 +12,9 @@ import { StarWarsService } from './star-wars.service';
 import { LogService } from './log.service';
 import { CreateCharacterComponent } from './create-character/create-character.component';
 import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const routes = [
-{
-  path: 'create-character',
-  component: CreateCharacterComponent
-},
-{
-  path: 'characters',
-  component: TabsComponent,
-  children: [
-    {
-    path: '', redirectTo: 'all', pathMatch: 'full'
-    },
-    {
-    path: ':side',
-    component: ListComponent
-  }
-  ]
-},
-{
-  path: '**',
-  redirectTo: '/characters'
-}
-];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +27,9 @@ const routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule,
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [StarWarsService, LogService],
   bootstrap: [AppComponent]

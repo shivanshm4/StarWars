@@ -1,5 +1,7 @@
 <div class="list-group" >
-  <app-item *ngFor="let char of characters"
-   [character]="char"
-  ></app-item>
+  <app-item *ngFor="let char of characters | paginate: {itemsPerPage: 10, currentPage:p, totalItems: 87 }"
+   [character]="char"></app-item>
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event;fetchNext()"></pagination-controls>
+  </div>
 </div>
